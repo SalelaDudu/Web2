@@ -11,15 +11,16 @@
     </header>
     <main>
         <form action="/registro" method="POST">
-            <label for="username"></label><input id="username" type="text" placeholder="Nome se usuário">
-            <label for="password"></label><input id="password" type="password" placeholder="Senha">
+            <label for="username"></label><input name="username" id="username" type="email" placeholder="Nome se usuário" value="{{request.form['username']}}">
+            <label for="password"></label><input name="password" id="password" type="password" placeholder="Senha" value="{{request.form['password']}}">
             <br>
-            <input type="submit" value="Login">
-            <input type="submit" value="Registrar">
+            <input type="submit" value="LOGIN">
         </form>
+        <input type="button" value="Cadastrar" id="cadastrar" onclick="window.location.href='/registrar'">
     </main>
     <footer>
 
     </footer>
 </body>
+
 </html>

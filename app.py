@@ -15,21 +15,6 @@ def loginScreen():
 
 @app.route('/registro', methods=['POST'])
 def registro():
-    '''
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        # hashed_password = hashlib.sha256(password.encode()).hexdigest()
 
-    return render_template('register.html')
-    
-    '''
-    try:
-        username = request.form['username']
-        password = request.form['password']
-
-        return username,password
-        
-    except(ValueError,ValueError) as e:
-        return e
-        
+    email = request.form['username']
+    senha = request.form['password']
