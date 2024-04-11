@@ -1,15 +1,7 @@
-from sqlite3 import *
-from flask import Flask,render_template,g
+from flask import Flask,render_template,request
+from database_manager import *
 
 app = Flask(__name__)
-
-
-def get_db():
-    db = getattr(g, '_database', None)
-    if db is None:
-        db = g._database = connect('./database/app.db')
-    return db
-
 
 @app.route("/")
 def index():
@@ -17,8 +9,27 @@ def index():
 
 @app.route("/login")
 def loginScreen():
-    db = get_db()
-    cursor = db.cursor()
-    cursor.execute('''select * from login;''')
-    return cursor.fetchall()
+    query = '''select * from login;'''
+    handler = consulta(query)
+    return render_template("login.html",teste=handler)
 
+@app.route('/registro', methods=['POST'])
+def registro():
+    '''
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        # hashed_password = hashlib.sha256(password.encode()).hexdigest()
+
+    return render_template('register.html')
+    
+    '''
+    try:
+        username = request.form['username']
+        password = request.form['password']
+
+        return username,password
+        
+    except(ValueError,ValueError) as e:
+        return e
+        
