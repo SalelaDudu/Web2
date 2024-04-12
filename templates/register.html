@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar</title>
+</head>
+<body>
+{% with mensagens = get_flashed_messages() %}
+    <header>
+    </header>
+    <main>
+        <form action="/registro" method="POST">
+            <label for="username"></label><input name="username" id="username" type="text" placeholder="Nome se usuário" value="{{request.form['username']}}" required>
+            <label for="password"></label><input name="password" id="password" type="password" placeholder="Senha" value="{{request.form['password']}}" required>
+            <label for="re-password"></label><input name="re-password" id="re-password" type="password" placeholder="Repita sua Senha" value="{{request.form['repeat-password']}}" required>
+            <br>
+            <input type="submit" value="REGISTRAR" onclick="">
+        </form>
+        {% if mensagens %}
+            <div style="background: #c92f00af;">
+                {% for msg in mensagens %}
+                    {{ msg }}
+                {% endfor %}
+            </div>
+        {% endif %}
+    </main>
+    <footer>
+    </footer>
+{% endwith %}
+<script>
+    function validarSenha()
+   {
+        var senha = this.document.getElementById('password').value;
+        var re_senha = this.document.getElementById("re-password").value;
+        
+        if (senha == re_senha)
+        {
+            alert("OK!")
+            window.location.href='/registro';
+        }
+        else
+        {
+            alert("As senhas não conferem!");
+            window.location.href='/registrar';
+        }
+        
+   }
+   
+</script>
+</body>
+</html>

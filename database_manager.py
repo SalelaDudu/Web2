@@ -12,3 +12,10 @@ def consulta(query):
     cursor = db.cursor()
     cursor.execute(query)
     return cursor.fetchall()
+
+def registerLogin(username,psswd):
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute(f"insert into login values('{username}','{psswd}');")
+    db.commit()
+    cursor.close()

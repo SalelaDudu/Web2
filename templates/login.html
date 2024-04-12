@@ -7,20 +7,26 @@
 </head>
 <body>
     <header>
-
+        {% with mensagens =  get_flashed_messages() %}
     </header>
     <main>
-        <form action="/registro" method="POST">
-            <label for="username"></label><input name="username" id="username" type="email" placeholder="Nome se usuário" value="{{request.form['username']}}">
-            <label for="password"></label><input name="password" id="password" type="password" placeholder="Senha" value="{{request.form['password']}}">
+        <form action="/logar" method="POST">
+            <label for="username"></label><input name="username" id="username" type="text" placeholder="Nome se usuário" value="{{request.form['username']}}" required>
+            <label for="password"></label><input name="password" id="password" type="password" placeholder="Senha" value="{{request.form['password']}}" required>
             <br>
             <input type="submit" value="LOGIN">
         </form>
         <input type="button" value="Cadastrar" id="cadastrar" onclick="window.location.href='/registrar'">
+        {% if mensagens %}
+            <div style="background-color:#c92f00af;">
+            {% for msg in mensagens %}
+                {{msg}}
+            {% endfor %}
+            </div>
+        {% endif %}
     </main>
     <footer>
-
     </footer>
+    {% endwith %}
 </body>
-
 </html>
