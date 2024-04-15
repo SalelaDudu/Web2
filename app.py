@@ -1,6 +1,6 @@
 from flask import Flask, flash, redirect, render_template,request, url_for
 from flask_bcrypt import Bcrypt
-from database_manager import *
+from database import *
 
 app = Flask(__name__)
 app_bcrypt = Bcrypt(app)
