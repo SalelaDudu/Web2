@@ -20,9 +20,9 @@ from app import app
 def index():
     return render_template("index.html")
 
-@app.route("/login")
+@app.route("/authentication")
 def loginScreen():
-    return render_template("login.html")
+    return render_template("authentication.html")
 
 @app.route("/logar", methods=['POST'])
 def logar():
