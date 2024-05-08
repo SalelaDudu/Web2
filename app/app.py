@@ -1,4 +1,5 @@
-from flask import Flask, flash, redirect, render_template,request, url_for
+from flask import Flask, flash, redirect, render_template,render_template_string,request,session, url_for
+import datetime
 from flask_bcrypt import Bcrypt
 from database import *
 
@@ -6,6 +7,7 @@ app = Flask(__name__)
 app_bcrypt = Bcrypt(app)
 
 app.config['SECRET_KEY'] = 'salamandra'
+app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(minutes=10)
 
 def encryptar(senha):
     return app_bcrypt.generate_password_hash(senha).decode('utf-8')
@@ -36,7 +38,16 @@ def logar():
     else:
         if(decryptar(senhaBanco[0][0],password)):
             flash("LOGADO!")
-            return redirect('/authentication#logIn')
+            session['login'] = username
+            session.permanent = True
+            return render_template_string(
+            """
+            {%if session['login'] %}
+                <h1>Welcome {{session['login']}}!</h1>
+            {%else%}
+                <h1> Welcome! please authenticate <a href="{{url_for('registro')}}"> here</a></h1>
+            {%endif%}
+            """)
         else:
             flash("Usuário e/ou senha incorretos.")
             return redirect('/authentication#logIn')
@@ -60,3 +71,9 @@ def registro():
             pw_hash = encryptar(senha)
             registerLogin(username,pw_hash)
             return redirect('/authentication#logIn')
+
+@app.route('/closeSession')
+def closeSession():
+    
+    session.pop('login', default=None)
+    return '<h1>Session close!</h1>'
