@@ -1,92 +1,83 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Busca Dev</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link>
-  </head>
-  <body>
-        
-    <!-- ALTER TABLE NomeDaTabela
-ADD COLUMN nova_coluna INTEGER PRIMARY KEY AUTOINCREMENT;
-
-        Cabeçalho do Site
-        adicione uma barra vertical e uma area de login(só os botões por enquanto)
-        no centro coloque uma imagem da marca ao invés dos botões
-    -->
-    <header>
-        <div class="">
-            <nav style="background-color:gray ;box-shadow: 0px 1px 0px black; min-height: 90px;">
-                <ul class="nav justify-content-center">
-                    <li class="nav-item">
-                      <a class="nav-link active" aria-current="page" href="#">Active</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                    </li>
-                  </ul>
-            </nav>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Busca Dev</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="../static/css/style.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Cabeçalho do Site -->
+  <header>
+    <nav id="nav-top" class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="../static/img/conecte-se.png" alt="Logo" height="30">
+        </a>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Vagas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Empresa</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Sobre</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contato</a>
+            </li>
+          </ul>
         </div>
-    </header>
-    <!-- 
+        <button id="color-btn-entrar" class="btn btn-outline-success" type="button">Entrar</button>
+      </div>
+    </nav>
+  </header>
 
-        Corpo do código
+  <!-- Corpo do Site -->
+  <main>
+    <section class="py-5 text-center">
+      <div class="container">
+        <h1 class="display-4 fw-bold">Encontre seu próximo emprego de desenvolvedor</h1>
+        <p class="lead">Explore milhares de vagas de emprego para desenvolvedores de software em todo o mundo.</p>
+        <form>
+          <div class="input-group input-group-lg">
+            <input type="text" class="form-control" placeholder="Buscar vagas">
+            <button class="btn btn-primary" type="button">Buscar</button>
+          </div>
+        </form>
+      </div>
+    </section>
 
-    -->
-    <main>
-        <!-- Essa div é o fundo no centro da tela, consiga um jeito de q as bordas fiquem menores e mais bonitas -->
-        <div class="container" style="background-color: purple;min-height:1000px;">
-            <!-- Aqui é a parte q vai ficar acima dos cards com as opções de vaga da pra por um degrade com sombra em cima da área dos cards -->
-            <div style="min-height: 350px;">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit cum cumque excepturi autem beatae. Voluptatibus adipisci, voluptate iusto nobis minima, accusamus nulla corrupti maiores officia dignissimos mollitia accusantium harum dolor.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit cum cumque excepturi autem beatae. Voluptatibus adipisci, voluptate iusto nobis minima, accusamus nulla corrupti maiores officia dignissimos mollitia accusantium harum dolor.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit cum cumque excepturi autem beatae. Voluptatibus adipisci, voluptate iusto nobis minima, accusamus nulla corrupti maiores officia dignissimos mollitia accusantium harum dolor.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit cum cumque excepturi autem beatae. Voluptatibus adipisci, voluptate iusto nobis minima, accusamus nulla corrupti maiores officia dignissimos mollitia accusantium harum dolor.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit cum cumque excepturi autem beatae. Voluptatibus adipisci, voluptate iusto nobis minima, accusamus nulla corrupti maiores officia dignissimos mollitia accusantium harum dolor.
+    <section class="container">
+      <div class="row">
+        <!-- Exemplo de card de vaga -->
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Desenvolvedor Web</h5>
+              <p class="card-text">Empresa XYZ está procurando um desenvolvedor web experiente para se juntar à nossa equipe.</p>
+              <a href="#" class="btn btn-primary">Saiba mais</a>
             </div>
-           <!-- 
-            
-                aqui é onde fica os cards das vagas, o back end vai ficar mandando e atualizando essa tela mas cria um padrão
-                de  cada row  ter um número máximo de vagas (acho q 3 ta bom mas talvez de pra por 4 menores), e um jeito dos cards
-                serem clicáveis e terem um aumento quando passa por cima o mouse.
-            
-            -->
-            <div class="row" style="text-align: center;">
-                <!-- Cada um desses é um card -->
-                <div class="col-md-4">
-                                
-                    <div class="card" style="background-color:gold; min-height: 80px; min-width: 160px;"></div>
-
-                </div>
-
-                <div class="col-md-4">                                
-                    <div class="card" style="background-color:gold; min-height: 80px; min-width: 160px;">
-                    </div>
-                </div>
-
-                <div class="col-md-4">                                
-                    <div class="card" style="background-color:gold; min-height: 80px; min-width: 160px;"></div>
-                </div>
-            </div>
-
+          </div>
         </div>
-    </main>
 
-    <footer>
+        <!-- Outros cards de vagas -->
+        <!-- Coloque mais cards de vagas aqui -->
+      </div>
+    </section>
+  </main>
 
-    </footer>
+  <!-- Rodapé do Site -->
+  <footer class="footer mt-auto py-3 bg-light">
+    <div class="container text-center">
+      <span class="text-muted">© 2024 Busca Dev. Todos os direitos reservados.</span>
+    </div>
+  </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  </body>
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
 </html>
