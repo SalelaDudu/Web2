@@ -10,7 +10,7 @@
     <a class="links" id="register"></a>
     <a class="links" id="logIn"></a>
      
-    <div class="content">      
+    <div class="content">
       <!--FORMULÁRIO DE LOGIN-->
       <div id="login">
         <form method="post" action=""> 
@@ -71,7 +71,16 @@
           </p>
         </form>
       </div>
+  </div>
+</div>
+<div>
+  {% with mensagens =  get_flashed_messages() %}
+    <div style="width: 100%;background-color: rgb(104, 16, 16);min-height:150px;position:relative;z-index: 10;">
+      {% for msg in mensagens %}
+        {{msg}}
+      {% endfor %}
     </div>
-  </div>  
+  {% endwith %}
+</div>
 </body>
 </html>

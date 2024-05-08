@@ -22,7 +22,9 @@ def index():
 
 @app.route("/authentication")
 def loginScreen():
+    flash('<>')
     return render_template("authentication.html")
+    
 
 @app.route("/logar", methods=['POST'])
 def logar():
