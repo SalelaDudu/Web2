@@ -13,7 +13,7 @@
     <div class="content">
       <!--FORMULÁRIO DE LOGIN-->
       <div id="login">
-        <form method="post" action=""> 
+        <form method="post" action="/logar"> 
           <h1>Login</h1> 
           <p> 
             <label for="login_input">Login</label>
@@ -43,17 +43,17 @@
  
       <!--FORMULÁRIO DE CADASTRO-->
       <div id="cadastro">
-        <form method="post" action=""> 
+        <form method="post" action="/registro"> 
           <h1>Cadastro</h1> 
            
           <p> 
-            <label for="Login_input">Login</label>
-            <input id="Login_input" name="Login_input" required="required" type="text" placeholder="Fulano2010" />
+            <label for="registro_input">Login</label>
+            <input id="registro_input" name="registro_input" required="required" type="text" placeholder="Fulano2010" />
           </p>
            
           <p> 
-            <label for="password_input">Senha</label>
-            <input id="password_input" name="password_input" required="required" type="password" placeholder="senhaSegura123!#!#"/> 
+            <label for="registro_password_input">Senha</label>
+            <input id="registro_password_input" name="registro_password_input" required="required" type="password" placeholder="senhaSegura123!#!#"/> 
           </p>
            
           <p> 
@@ -72,15 +72,16 @@
         </form>
       </div>
   </div>
+  <div>
+    {% with mensagens =  get_flashed_messages() %}
+      <div style="background-color: rgb(167, 45, 45);">
+        {% for msg in mensagens %}
+          {{msg}}
+        {% endfor %}
+      </div>
+    {% endwith %}
+  </div>
 </div>
-<div>
-  {% with mensagens =  get_flashed_messages() %}
-    <div style="width: 100%;background-color: rgb(104, 16, 16);min-height:150px;position:relative;z-index: 10;">
-      {% for msg in mensagens %}
-        {{msg}}
-      {% endfor %}
-    </div>
-  {% endwith %}
-</div>
+
 </body>
 </html>
