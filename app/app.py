@@ -20,7 +20,13 @@ from app import app
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    print(session)
+    if(session['login'] != None):
+        session_ =  session['login']
+    else:
+        session_ = None
+                
+    return render_template("index.html",session_)
 
 @app.route("/authentication")
 def loginScreen():
@@ -58,6 +64,7 @@ def registro():
     username = request.form['registro_input']
     senha = request.form['registro_password_input']
     re_senha = request.form['password_input_repeat']
+    user_mode = request.form['user_mode']
     consultado = consulta(f'''select username from login where username = "{username}";''')
 
     if(len(consultado) > 0):
@@ -70,6 +77,8 @@ def registro():
         else:
             pw_hash = encryptar(senha)
             registerLogin(username,pw_hash)
+            registerUser(username,user_mode)
+            flash('Sucesso!')
             return redirect('/authentication#logIn')
 
 @app.route('/closeSession')
