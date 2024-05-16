@@ -22,9 +22,9 @@
         </li>
       </ul>
     </div>
-    {% if session_ %}
-      <a href="{{url_for('loginScreen')}}"><button id="color-btn-entrar" class="btn btn-outline-success" type="button">OLÁ {{session_}}</button></a>
-    {% else %}
+    {% if session_ %} <!-- Se o usuário estiver logado mostra codigo abaixo -->
+      <img style="max-width: 70px; border-radius: 100%;" src="../static/img/papagaio.png"> <div style="color: white; font-weight: bold;">Olá {{session_}}!</div>
+    {% else %} <!-- Senão mostra botão de logar -->
       <a href="{{url_for('loginScreen')}}"><button id="color-btn-entrar" class="btn btn-outline-success" type="button">Entrar</button></a>
     {%endif%}
   </div>
