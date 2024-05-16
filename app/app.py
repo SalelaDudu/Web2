@@ -1,59 +1,39 @@
-from flask import Flask, flash, redirect, render_template,render_template_string,request,session, url_for
-import datetime
-from flask_bcrypt import Bcrypt
-from database import *
-
-app = Flask(__name__)
-app_bcrypt = Bcrypt(app)
-
-app.config['SECRET_KEY'] = 'salamandra'
-app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(minutes=10)
-
-def encryptar(senha):
-    return app_bcrypt.generate_password_hash(senha).decode('utf-8')
-
-def decryptar(senhaBanco,senhaCandidata):
-    return app_bcrypt.check_password_hash(senhaBanco, senhaCandidata) # returns True
-
-from app import app
-
+from . import app,session,render_template,request,flash,session,redirect,render_template_string
+import app.backend as be
+from app.config import SECRET_KEY
 
 @app.route("/")
 def index():
-    print(session)
-    if(session['login'] != None):
-        session_ =  session['login']
-    else:
-        session_ = None
-                
-    return render_template("index.html",session_)
+    if 'login' not in session:
+        return render_template("index.html")
+    else:                
+        return render_template("index.html",session_ = session['login'])
 
 @app.route("/authentication")
 def loginScreen():
     return render_template("authentication.html")
-    
+
+@app.route('/closeSession')
+def closeSession():
+    session.clear()
+    return '<h1>Session close!</h1>'
 
 @app.route("/logar", methods=['POST'])
 def logar():
     username = request.form['login_input']
     password = request.form['login_password_input']
-    senhaBanco = consulta(f'select password from login where username = "{username}"')
-    if(len(senhaBanco) == 0):
+    
+    res = be.logar(username,password)
+    
+    if res == 1:
         flash("Usuário não cadastrado! faça seu registro.")
         return redirect("/authentication#register")
     else:
-        if(decryptar(senhaBanco[0][0],password)):
+        if res == 2:
             flash("LOGADO!")
             session['login'] = username
             session.permanent = True
-            return render_template_string(
-            """
-            {%if session['login'] %}
-                <h1>Welcome {{session['login']}}!</h1>
-            {%else%}
-                <h1> Welcome! please authenticate <a href="{{url_for('registro')}}"> here</a></h1>
-            {%endif%}
-            """)
+            return redirect('/')
         else:
             flash("Usuário e/ou senha incorretos.")
             return redirect('/authentication#logIn')
@@ -65,24 +45,15 @@ def registro():
     senha = request.form['registro_password_input']
     re_senha = request.form['password_input_repeat']
     user_mode = request.form['user_mode']
-    consultado = consulta(f'''select username from login where username = "{username}";''')
+    res = be.registro(username,senha,re_senha,user_mode)
 
-    if(len(consultado) > 0):
+    if(res == 1):
         flash('Nome de usuário já cadastrado')
         return redirect('/authentication#register')
     else:
-        if(senha != re_senha):
+        if(res == 2):
             flash('As senhas não batem!')
             return redirect('/authentication#register')
-        else:
-            pw_hash = encryptar(senha)
-            registerLogin(username,pw_hash)
-            registerUser(username,user_mode)
+        elif res == 3:            
             flash('Sucesso!')
             return redirect('/authentication#logIn')
-
-@app.route('/closeSession')
-def closeSession():
-    
-    session.pop('login', default=None)
-    return '<h1>Session close!</h1>'

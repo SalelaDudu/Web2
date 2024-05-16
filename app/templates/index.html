@@ -22,9 +22,10 @@
         </li>
       </ul>
     </div>
-    {% if session_ != None %}
+    {% if session_ %}
+      <a href="{{url_for('loginScreen')}}"><button id="color-btn-entrar" class="btn btn-outline-success" type="button">OLÁ {{session_}}</button></a>
     {% else %}
-    <a href="{{url_for('loginScreen')}}"><button id="color-btn-entrar" class="btn btn-outline-success" type="button">Entrar</button></a>
+      <a href="{{url_for('loginScreen')}}"><button id="color-btn-entrar" class="btn btn-outline-success" type="button">Entrar</button></a>
     {%endif%}
   </div>
 {%endblock%}
