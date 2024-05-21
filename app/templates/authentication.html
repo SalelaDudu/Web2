@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Formulário de Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <link href="../static/css/telalogin.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+  <div class="container" >
+    <a class="links" id="register"></a>
+    <a class="links" id="logIn"></a>
+     
+    <div class="content">
+      <!--FORMULÁRIO DE LOGIN-->
+      <div id="login">
+        <form method="post" action="/logar"> 
+          <h1>Login</h1> 
+          <p> 
+            <label for="login_input">Login</label>
+            <input id="login_input" name="login_input" required="required" type="text" placeholder="MeuLogin"/>
+          </p>
+           
+          <p> 
+            <label for="login_password_input">Senha</label>
+            <input id="login_password_input" name="login_password_input" required="required" type="password" placeholder="MinhaSenha123" /> 
+          </p>
+           
+          <p> 
+            <input type="checkbox" name="manterlogado" id="manterlogado" value="" /> 
+            <label for="manterlogado">Manter-me logado</label>
+          </p>
+           
+          <p> 
+            <input type="submit" value="Logar" /> 
+          </p>
+           
+          <p class="link">
+            Ainda não tem conta?
+            <a href="#register">Cadastre-se</a>
+          </p>
+        </form>
+      </div>
+ 
+      <!--FORMULÁRIO DE CADASTRO-->
+      <div id="cadastro">
+        <form method="post" action="/registro"> 
+          <h1>Cadastro</h1> 
+           
+          <p> 
+            <label for="registro_input">Login</label>
+            <input id="registro_input" name="registro_input" required="required" type="text" placeholder="Fulano2010" />
+          </p>
+           
+          <p> 
+            <label for="registro_password_input">Senha</label>
+            <input id="registro_password_input" name="registro_password_input" required="required" type="password" placeholder="senhaSegura123!#!#"/> 
+          </p>
+           
+          <p> 
+            <label for="password_input_repeat">Confirmação da Senha</label>
+            <input id="password_input_repeat" name="password_input_repeat" required="required" type="password" placeholder="AmesmaSenhaDeCima123!#!#"/>
+          </p>
+          <p>
+            <label>Tipo de Usuário:</label>
+            <hr>
+            <br>
+            <label for="user_mode"> Dev </label> 
+            <input type="radio" name="user_mode" required="required" value="Dev">
+            <label for="user_mode"> Recrutador </label>
+            <input type="radio" name="user_mode" required="required" value="Recrutador">
+          </p>
+          <p> 
+            <input type="submit" value="Cadastrar"/> 
+          </p>
+           
+          <p class="link">  
+            Já tem conta?
+            <a href="#logIn"> Ir para Login </a>
+          </p>
+        </form>
+      </div>
+  </div>
+  <div>
+    {% with mensagens =  get_flashed_messages() %}
+      <div style="background-color: rgb(167, 45, 45);">
+        {% for msg in mensagens %}
+          {{msg}}
+        {% endfor %}
+      </div>
+    {% endwith %}
+  </div>
+</div>
+
+</body>
+</html>
