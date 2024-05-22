@@ -13,11 +13,33 @@ def index():
 def loginScreen():
     return render_template("authentication.html")
 
-@app.route('/closeSession')
-def closeSession():
+@app.route('/LogOut')
+def LogOut():
     session.clear()
-    return '<h1>Session close!</h1>'
+    return'''
 
+        <h1>Até logo! Você será redirecionado em <span id="countdown">3</span> segundos...</h1>
+        <script>
+            function startCountdown(duration, display) {
+                var timer = duration, seconds;
+                var countdownInterval = setInterval(function() {
+                    seconds = parseInt(timer, 10);
+                    display.textContent = seconds;
+
+                    if (--timer < 0) {
+                        clearInterval(countdownInterval);
+                        window.location.href = "/";
+                    }
+                }, 1000);
+            }
+
+            window.onload = function() {
+                var threeSeconds = 3;
+                var display = document.querySelector('#countdown');
+                startCountdown(threeSeconds, display);
+            };            
+        </script>             
+    '''
 @app.route("/logar", methods=['POST'])
 def logar():
     username = request.form['login_input']
