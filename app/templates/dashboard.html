@@ -1,1 +1,47 @@
 {% extends "base.html" %}
+{% block title %}BuscaDev - Dashboard{% endblock %}
+{% block header%}
+<div class="container">
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('index')}}">Home</a>
+        </li>
+        </li>
+      </ul>
+    </div>
+    {% if _session %} <!-- Se o usuário estiver logado mostra codigo abaixo -->
+      <img style="max-width: 70px; border-radius: 100%;" src="../static/img/papagaio.png"> <div style="color: white; font-weight: bold;">Olá {{_session['login']}}!</div>
+    {% else %} <!-- Senão mostra botão de logar -->
+      <a href="{{url_for('loginScreen')}}"><button id="color-btn-entrar" class="btn btn-outline-success" type="button">Entrar</button></a>
+    {%endif%}
+  </div>
+{% endblock %}
+
+{% block conteudo %}
+{%if _session['user_mode'] == 'Dev'%}
+<div class="dev container" style="margin-top: 100px;">
+    <form>
+        <div class="form-group">
+          <label for="Nome_de_Usuario">Nome</label>
+          <input type="text" class="form-control" id="Nome_de_Usuario" placeholder="Nome e sobrenome" value="{{_session['login']}}">
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="data_de_nascimento">Data de nascimento:</label><br>
+            <input id="data_de_nascimento"type="date">
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="descricao">Descreva você</label>
+          <textarea class="form-control" id="descricao" rows="3"></textarea>
+        </div>
+        <br>
+        <button class="btn btn-primary btn-md" type="submit">Enviar</button>
+      </form>
+</div>
+{%else%}
+  <div> Recruiter</div>
+{%endif%}
+
+{% endblock%}

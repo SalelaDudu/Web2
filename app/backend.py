@@ -7,7 +7,8 @@ def logar(username,password):
         return 1
     else:
         if(decryptar(senhaBanco[0][0],password)):
-            return 2
+            user_type = db.consulta(f'SELECT user_mode from user_data WHERE login_username = "{username}"')
+            return [2,user_type[0][0]]
 
 def registro(username,senha,re_senha,user_mode):
     consultado = db.consulta(f'''select username from login where username = "{username}";''')

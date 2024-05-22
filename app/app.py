@@ -29,11 +29,12 @@ def logar():
         flash("Usuário não cadastrado! faça seu registro.")
         return redirect("/authentication#register")
     else:
-        if res == 2:
+        if res[0] == 2:
             flash("LOGADO!")
             session['login'] = username
+            session['user_mode'] = res[1]
             session.permanent = True
-            return redirect('/')
+            return dashboard()
         else:
             flash("Usuário e/ou senha incorretos.")
             return redirect('/authentication#logIn')
@@ -57,3 +58,11 @@ def registro():
         elif res == 3:            
             flash('Sucesso!')
             return redirect('/authentication#logIn')
+
+@app.route('/dashboard')
+def dashboard():
+    if 'login' not in session:
+        return redirect('/authentication#logIn')
+    else:                
+        
+        return render_template("dashboard.html",_session = session)

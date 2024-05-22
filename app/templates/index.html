@@ -2,26 +2,34 @@
 {% block title %}BuscaDev{% endblock %}
 
 {%block header%}
+  {% if session_ %}
   <div class="container">
-    <a class="navbar-brand" href="#">
-      <img src="../static/img/conecte-se.png" alt="Logo" height="30">
-    </a>
     <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Vagas</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Empresa</a>
-        </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Sobre</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Contato</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('dashboard')}}">Meu perfil</a>
+        </li>
       </ul>
     </div>
+    {%else%}
+    <div class="container">
+      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Sobre</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contato</a>
+          </li>
+        </ul>
+      </div>
+      {%endif%}
     {% if session_ %} <!-- Se o usuário estiver logado mostra codigo abaixo -->
       <img style="max-width: 70px; border-radius: 100%;" src="../static/img/papagaio.png"> <div style="color: white; font-weight: bold;">Olá {{session_}}!</div>
     {% else %} <!-- Senão mostra botão de logar -->
