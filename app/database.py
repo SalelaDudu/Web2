@@ -26,3 +26,29 @@ def registerUser(login,user_mode):
     cursor.execute(f"insert into user_data(login_username, user_mode) values('{login}','{user_mode}')")
     db.commit()
     cursor.close()
+    
+def registerDevData(login,name,birth,desc):
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute(f"update user_data set name='{name}',born='{birth}',description='{desc}' where login_username = '{login}'")
+    db.commit()
+    cursor.close()
+
+def registerRecruiterData(login,name,desc):
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute(f"update user_data set name='{name}',description='{desc}' where login_username = '{login}'")
+    db.commit()
+    cursor.close()
+
+def getDevInfo(login):
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute(f"select * from user_data where login_username = '{login}'")
+    return cursor.fetchall()
+
+def getRecruiterInfo(login):
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute(f"select * from user_data where login_username = '{login}'")
+    return cursor.fetchall()

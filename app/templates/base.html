@@ -6,10 +6,33 @@
   <title>{%block title%}{%endblock%}</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link href="../static/css/style.css" rel="stylesheet">
+  <style>
+    .redirecionamento:hover{
+      text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+      color: white;
+    }
+    .user_section{
+      display: contents;
+    }
+    .user_section > img{
+      width:60px;
+      border-radius: 100%;
+    }
+    .user_section > a > img{
+      width:35px;
+    }
+    .user_section > p{
+      color: white;
+      font-weight: bold;
+      margin: 0px;
+    }
+    #form_dev{  
+    }
+  </style>
 </head>
 <body>    
     <header>
-        <nav id="nav-top" class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav  id="nav-top" class="navbar navbar-expand-lg navbar-light bg-light">
         {% block header %}
 
         {%endblock%}

@@ -85,6 +85,35 @@ def registro():
 def dashboard():
     if 'login' not in session:
         return redirect('/authentication#logIn')
-    else:                
-        
-        return render_template("dashboard.html",_session = session)
+    else:
+        try:
+            if session['user_mode'] == 'Dev':
+                info = be.getDevInfo(session['login'])
+            elif session['user_mode'] == 'Recrutador':
+                info = be.getRecruiterInfo(session['login'])
+            
+            return render_template("dashboard.html",_session = session, _info = info)
+        except NameError:
+            return NameError
+@app.route('/saveDevInfo', methods=['POST','GET'])
+
+def devInfo():
+    login = session['login']
+    nomeUsuario = request.form['nome_dev']
+    nascimento = request.form['nascimento']
+    descricao = request.form['descricao_dev']
+    try:
+        be.saveDevInfo(login,nomeUsuario,nascimento,descricao)
+        return redirect('/dashboard')
+    except NameError:
+        return(NameError)
+
+@app.route('/saveRecruiterInfo',methods=['POST','GET'])
+def recruiterInfo():
+    nome_empresa = request.form['nome_empresa']
+    descricao_empresa = request.form['descricao_empresa']
+    try:
+        be.saveRecruiterInfo(session['login'],nome_empresa,descricao_empresa)
+        return redirect('/dashboard')
+    except NameError:
+        return NameError
