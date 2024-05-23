@@ -117,3 +117,15 @@ def recruiterInfo():
         return redirect('/dashboard')
     except NameError:
         return NameError
+@app.route('/postarVaga',methods=['POST','GET'])
+def PostarVaga():
+    nome  = request.form['nome_empresa']
+    descricao = request.form['descricao_vaga']
+    
+    try:
+        be.postarVaga(session['login'],nome,descricao)
+        flash("Sucesso")
+        return redirect('/')        
+        
+    except NameError:
+        return NameError

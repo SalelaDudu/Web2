@@ -40,11 +40,11 @@
       </form>
 </div>
 {%else%}
-<div class="dev container" style="margin-top: 100px;">
-  <form id="form_dev" method="POST" action="/saveRecruiterInfo">
+<div class="recruiter container" style="margin-top: 100px;">
+  <form id="form_recruiter" method="POST" action="/saveRecruiterInfo">
       <div class="form-group">
         <label for="Nome da Empresa">Nome da Empresa:</label>
-        <input  name='nome_empresa'type="text" class="form-control" id="Nome da Empresa" placeholder="Mega Tech" value="{{_info['nome']}}">
+        <input  name='nome_empresa'type="text" class="form-control" id="Nome_daEmpresa" placeholder="Mega Tech" value="{{_info['nome']}}">
       </div>
       <br>
       <div class="form-group">
@@ -55,6 +55,25 @@
       <button class="btn btn-primary btn-md" type="submit">Salvar</button>
     </form>
 </div>
+
+<div class='container' style="margin-top: 100px;">
+  <form id="postarVaga" method="POST" action="/postarVaga">
+    <div class="form-group">
+      <label for="nome_vaga">Título da Vaga:</label>
+      <input  name='nome_empresa'type="text" class="form-control" id="Nome_daVaga" placeholder="Desevolvedor php" value="">
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="descricao_vaga">Descrição da vaga:</label>
+      <textarea class="form-control" id="descricao_vaga" name="descricao_vaga" rows="5" placeholder="* 2 anos de experiências
+* Conhecimento sólido em laravel
+* Metodologia exTreme Go Horse"></textarea>
+    </div>
+    <br>
+    <button class="btn btn-primary btn-md" type="submit">Postar</button>
+  </form>
+</div>
+
 {%endif%}
 
 {% endblock%}

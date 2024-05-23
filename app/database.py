@@ -52,3 +52,10 @@ def getRecruiterInfo(login):
     cursor = db.cursor()
     cursor.execute(f"select * from user_data where login_username = '{login}'")
     return cursor.fetchall()
+
+def postVaga(login,nome,descricao):
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute(f"insert into cards('owner','description','title') values('{login}','{descricao}','{nome}')")
+    db.commit()
+    cursor.close()

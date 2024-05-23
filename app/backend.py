@@ -75,3 +75,9 @@ def getRecruiterInfo(login):
         
     except NameError:
         return NameError
+
+def postarVaga(login,nome,descricao):
+    try:
+        db.postVaga(login,nome,descricao)
+    except NameError:
+        return NameError
