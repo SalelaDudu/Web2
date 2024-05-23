@@ -59,3 +59,10 @@ def postVaga(login,nome,descricao):
     cursor.execute(f"insert into cards('owner','description','title') values('{login}','{descricao}','{nome}')")
     db.commit()
     cursor.close()
+
+def getCards():
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute(f"select * from cards")
+    return cursor.fetchall()
+    

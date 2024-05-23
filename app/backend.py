@@ -9,7 +9,6 @@ def logar(username,password):
         if(decryptar(senhaBanco[0][0],password)):
             user_type = db.consulta(f'SELECT user_mode from user_data WHERE login_username = "{username}"')
             return [2,user_type[0][0]]
-
 def registro(username,senha,re_senha,user_mode):
     consultado = db.consulta(f'''select username from login where username = "{username}";''')
     if(len(consultado) > 0):
@@ -22,7 +21,6 @@ def registro(username,senha,re_senha,user_mode):
             db.registerLogin(username,pw_hash)
             db.registerUser(username,user_mode)
             return 3
-
 def saveDevInfo(login,nome,nascimento,descricao):
     try:    
         db.registerDevData(login,nome,nascimento,descricao)
@@ -48,14 +46,11 @@ def getDevInfo(login):
         return info
     except NameError:
         return NameError
-
-
 def saveRecruiterInfo(login,nome_empresa,descricao_empresa):
     try:
         db.registerRecruiterData(login,nome_empresa,descricao_empresa)
     except NameError:
-        return NameError
-    
+        return NameError   
 def getRecruiterInfo(login):
     try:
         recruiterInfo = db.getRecruiterInfo(login)
@@ -75,9 +70,11 @@ def getRecruiterInfo(login):
         
     except NameError:
         return NameError
-
-def postarVaga(login,nome,descricao):
+def postarVaga(login,titulo,descricao):
     try:
-        db.postVaga(login,nome,descricao)
+        dono = db.consulta(f"select name from user_data where login_username = '{login}'")
+        db.postVaga(dono[0][0],titulo,descricao)
     except NameError:
         return NameError
+def getCards():    
+    return db.getCards()

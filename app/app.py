@@ -4,15 +4,14 @@ from app.config import SECRET_KEY
 
 @app.route("/")
 def index():
+    cards = be.getCards()
     if 'login' not in session:
-        return render_template("index.html")
+        return render_template("index.html",cards_ = cards)
     else:                
-        return render_template("index.html",session_ = session['login'])
-
+        return render_template("index.html",session_ = session['login'],cards_ = cards)
 @app.route("/authentication")
 def loginScreen():
     return render_template("authentication.html")
-
 @app.route('/LogOut')
 def LogOut():
     session.clear()
@@ -59,8 +58,7 @@ def logar():
             return dashboard()
         else:
             flash("Usuário e/ou senha incorretos.")
-            return redirect('/authentication#logIn')
-        
+            return redirect('/authentication#logIn')    
 @app.route('/registro', methods=['POST'])
 def registro():
 
@@ -80,7 +78,6 @@ def registro():
         elif res == 3:            
             flash('Sucesso!')
             return redirect('/authentication#logIn')
-
 @app.route('/dashboard')
 def dashboard():
     if 'login' not in session:
@@ -96,7 +93,6 @@ def dashboard():
         except NameError:
             return NameError
 @app.route('/saveDevInfo', methods=['POST','GET'])
-
 def devInfo():
     login = session['login']
     nomeUsuario = request.form['nome_dev']
@@ -107,7 +103,6 @@ def devInfo():
         return redirect('/dashboard')
     except NameError:
         return(NameError)
-
 @app.route('/saveRecruiterInfo',methods=['POST','GET'])
 def recruiterInfo():
     nome_empresa = request.form['nome_empresa']
