@@ -65,14 +65,8 @@
                 {%if session_ and session_['user_mode'] != 'Dev'%}
                   <a href="/minhasVagas" class="btn btn-primary">Ver Inscritos</a>
                 {%else%}
-                {{i}}
-                {{session_['vagasAplicadas']}}
-                  {%if any(valor[0] in set(i) for valor in session_['vagasAplicadas']) %}
-                    <a href="/candidatarse/{{i[0]}}" class="btn btn-primary">Ja se candidatou</a>                                                            
-                    {%else%}
-                    <a href="/candidatarse/{{i[0]}}" class="btn btn-primary">Se candidatar</a>
-                    {%endif%}
-                {%endif%}  
+                  <a href="/candidatarse/{{i[0]}}" class="btn btn-primary">Se candidatar</a>
+                {%endif%}
                 </div>
             </div>
           </div>

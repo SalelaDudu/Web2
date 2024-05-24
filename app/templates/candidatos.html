@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Minhas Vagas{% endblock %}
+{% block title %}Candidatos{% endblock %}
 {% block header%}
 <div class="container">
     <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
@@ -19,20 +19,22 @@
     {%endif%}
   </div>
 {% endblock %}
-
 {%block conteudo%}
-<div class="container-lg" style="margin-top: 100px;">    
-    <div class="row">        
-        {%for i in _vagas%}
-          <div class="col-md-4 mb-4">
-            <div class="card h-100">
-              <div class="card-body">
-                <h5 class="card-title">{{i[0]}}</h5>
-                <p class="card-text">{{i[1]}}</p>
-                <a href="/verCandidato/{{i[2]}}" target="_blank" class="btn btn-primary">Ver candidatos</a>
-              </div>
+<div class="container">
+    <div class="row" style="margin-top: 50px;">
+        <div class="col-md-12">
+            <h1> {{vaga_[0]}}</h1>
+            <p>{{vaga_[1]}}</p>
+        </div>
+    </div>
+    <h3> CANDIDATOS:</h3>
+    {%for i in candidatos%}
+        <div style="margin-top: 20px;" class="row">
+            <div class="col-md-12">
+                <h2>{{i[0]}}</h2>
+                <p>{{i[1]}}</p>
             </div>
-          </div>
-        {%endfor%}
-  </div
+        </div>        
+    {%endfor%}
+</div>
 {%endblock%}

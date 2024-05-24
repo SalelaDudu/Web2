@@ -91,3 +91,5 @@ def candidatar(user,vaga):
         return NameError
 def consulta(query):
     return db.consulta(query)
+def verCandidatos(idvaga):
+    return db.consulta(f''' SELECT user_data.name, user_data.description FROM user_data JOIN candidatos ON user_data.login_username = candidatos.dev where candidatos.vaga = "{idvaga}"; ''')

@@ -135,7 +135,6 @@ def minhasVagas():
         return redirect('/authentication#logIn')
     else:
         vagas = be.getVagas(session['login'])
-        print(vagas)
         return render_template('minhasvagas.html', _session=session['login'],_vagas=vagas)
 @app.route('/candidatarse/<idvaga>')
 def candidatar(idvaga):
@@ -144,9 +143,18 @@ def candidatar(idvaga):
     else:
         user = session['login']
         vaga = idvaga
-        
         try:
-            if be.candidatar(user,vaga) == 'ok':
-                return redirect('/')
+            res = be.consulta(f'select * from candidatos where dev ="{user}" and vaga="{vaga}"')        
+            if(len(res) > 0):
+                return redirect('/dashboard')
+            else:
+                if be.candidatar(user,vaga) == 'ok':
+                    return redirect('/')
         except NameError:
             return NameError
+@app.route('/verCandidato/<idvaga>')
+def verCandidatos(idvaga):
+    res = be.verCandidatos(idvaga)
+    vaga = be.consulta(f'select title,description from cards where id = "{idvaga}"')
+    
+    return render_template('/Candidatos.html',_session=session['login'], candidatos=res,vaga_=vaga[0])
