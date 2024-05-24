@@ -8,7 +8,7 @@ def index():
     if 'login' not in session:
         return render_template("index.html",cards_ = cards)
     else:                
-        return render_template("index.html",session_ = session['login'],cards_ = cards)
+        return render_template("index.html",session_=session, cards_ = cards)
 @app.route("/authentication")
 def loginScreen():
     return render_template("authentication.html")
@@ -124,3 +124,12 @@ def PostarVaga():
         
     except NameError:
         return NameError
+    
+@app.route('/minhasVagas')
+def minhasVagas():
+    if 'login' not in session:
+        return redirect('/authentication#logIn')
+    else:
+        vagas = be.getVagas(session['login'])
+        print(vagas)
+        return render_template('minhasvagas.html', _session=session['login'],_vagas=vagas)

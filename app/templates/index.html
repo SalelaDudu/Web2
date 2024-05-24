@@ -17,7 +17,7 @@
         </li>        
       </ul>
     </div>
-    <div class="user_section"><img src="../static/img/papagaio.png"> <p class="fs-4">Olá {{session_}}!</p><a href="/LogOut"><img src="../static/img/conecte-se.png"></a></div>
+    <div class="user_section"><img src="../static/img/papagaio.png"> <p class="fs-4">Olá {{session_['login']}}!</p><a href="/LogOut"><img src="../static/img/conecte-se.png"></a></div>
     {%else%}
     <div class="container">
       <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
@@ -62,7 +62,11 @@
                 <h5 class="card-title">{{i[2]}}</h5>
                 <h6 class="text-end fs-5 fw-bold" style="color: red;">{{i[1]}}</h2>
                 <p class="card-text">{{i[3]}}</p>
-                <a href="#" class="btn btn-primary">Saiba mais</a>                
+                {%if session_ and session_['user_mode'] != 'Dev'%}
+                  <a href="/minhasVagas" class="btn btn-primary">Ver Inscritos</a>
+                {%else%} 
+                <a href="#" class="btn btn-primary">Se candidatar</a>
+                {%endif%}
               </div>
             </div>
           </div>

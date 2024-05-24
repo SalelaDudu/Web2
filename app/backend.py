@@ -78,3 +78,8 @@ def postarVaga(login,titulo,descricao):
         return NameError
 def getCards():    
     return db.getCards()
+
+def getVagas(owner):
+    empresa = db.consulta(f'select name from user_data where login_username = "{owner}"')
+    return db.getMyVagas(empresa[0][0])
+    

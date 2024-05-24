@@ -7,6 +7,11 @@
         <li class="nav-item">
           <a class="nav-link fs-4 redirecionamento" href="{{url_for('index')}}">Home</a>
         </li>
+        {%if _session['user_mode'] != 'Dev' %}
+        <li class="nav-item">
+          <a class="nav-link fs-4 redirecionamento" href="{{url_for('minhasVagas')}}">Minhas Vagas</a>
+        </li>
+        {%endif%}
       </ul>
     </div>
     {% if _session %} <!-- Se o usuário estiver logado mostra codigo abaixo -->

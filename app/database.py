@@ -65,4 +65,10 @@ def getCards():
     cursor = db.cursor()
     cursor.execute(f"select * from cards")
     return cursor.fetchall()
+
+def getMyVagas(owner):
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute(f"select title,description from cards where owner = '{owner}'")
+    return cursor.fetchall()
     
