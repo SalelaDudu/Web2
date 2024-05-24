@@ -82,4 +82,12 @@ def getCards():
 def getVagas(owner):
     empresa = db.consulta(f'select name from user_data where login_username = "{owner}"')
     return db.getMyVagas(empresa[0][0])
-    
+
+def candidatar(user,vaga):
+    try:
+        db.candidatar(user,vaga)
+        return 'ok'
+    except NameError:
+        return NameError
+def consulta(query):
+    return db.consulta(query)

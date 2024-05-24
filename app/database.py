@@ -69,6 +69,11 @@ def getCards():
 def getMyVagas(owner):
     db = get_db()
     cursor = db.cursor()
-    cursor.execute(f"select title,description from cards where owner = '{owner}'")
+    cursor.execute(f"select title,description,id from cards where owner = '{owner}'")
     return cursor.fetchall()
-    
+def candidatar(user,vaga):
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute(f"insert into candidatos values('{user}','{vaga}')")
+    cursor.close()
+    db.commit()

@@ -7,7 +7,11 @@ def index():
     cards = be.getCards()
     if 'login' not in session:
         return render_template("index.html",cards_ = cards)
-    else:                
+    else:
+        
+        if session['user_mode'] == 'Dev':
+            dev = session['login']
+            session['vagasAplicadas'] = be.consulta(f'''select vaga from candidatos where dev = "{dev}"''')
         return render_template("index.html",session_=session, cards_ = cards)
 @app.route("/authentication")
 def loginScreen():
@@ -133,3 +137,16 @@ def minhasVagas():
         vagas = be.getVagas(session['login'])
         print(vagas)
         return render_template('minhasvagas.html', _session=session['login'],_vagas=vagas)
+@app.route('/candidatarse/<idvaga>')
+def candidatar(idvaga):
+    if 'login' not in session:
+        return redirect('/authentication#logIn')
+    else:
+        user = session['login']
+        vaga = idvaga
+        
+        try:
+            if be.candidatar(user,vaga) == 'ok':
+                return redirect('/')
+        except NameError:
+            return NameError
