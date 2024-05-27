@@ -9,6 +9,8 @@ def logar(username,password):
         if(decryptar(senhaBanco[0][0],password)):
             user_type = db.consulta(f'SELECT user_mode from user_data WHERE login_username = "{username}"')
             return [2,user_type[0][0]]
+        else:
+            return [9]
 def registro(username,senha,re_senha,user_mode):
     consultado = db.consulta(f'''select username from login where username = "{username}";''')
     if(len(consultado) > 0):

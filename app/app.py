@@ -51,18 +51,18 @@ def logar():
     res = be.logar(username,password)
     
     if res == 1:
-        flash("Usuário não cadastrado! faça seu registro.")
+        flash([0,"Usuário não cadastrado! faça seu registro."])
         return redirect("/authentication#register")
     else:
         if res[0] == 2:
-            flash("LOGADO!")
+            flash([1,"LOGADO!"])
             session['login'] = username
             session['user_mode'] = res[1]
             session.permanent = True
             return dashboard()
         else:
-            flash("Usuário e/ou senha incorretos.")
-            return redirect('/authentication#logIn')    
+            flash([2,"Usuário e/ou senha incorretos."])
+            return redirect('/authentication#logIn')
 @app.route('/registro', methods=['POST'])
 def registro():
 

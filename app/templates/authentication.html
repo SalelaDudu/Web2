@@ -4,6 +4,53 @@
   <title>Formulário de Login</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <link href="../static/css/telalogin.css" type="text/css" rel="stylesheet">
+  <style>
+    .alert{
+      text-align: center;
+      display: block;
+      border: none;
+      padding: 10px;
+      width: 500px;
+      height:auto;
+      border-radius: 10px;
+      position: fixed;
+      z-index: 10;      
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .alertShow {
+          animation: slide-up 0.5s ease forwards; 
+          opacity: 1; 
+        }
+
+      .alertHide {
+        animation: slide-down 0.5s ease forwards; 
+        opacity: 0; 
+    }
+
+    @keyframes slide-up {
+            from {              
+                bottom: 0%;
+            }
+            to {
+                bottom: 0.9%;
+            }
+        }
+
+      @keyframes slide-down {
+        from {
+            bottom: 0.9%;
+        }
+        to {
+            bottom: 0.1%;
+        }
+      }
+      .alert p{      
+        text-align: center;
+        font-size: 20px;
+        padding: 0px;
+      }
+  </style>
 </head>
 <body>
   <div class="container" >
@@ -81,15 +128,43 @@
       </div>
   </div>
   <div>
-    {% with mensagens =  get_flashed_messages() %}
-      <div style="background-color: rgb(167, 45, 45);">
+    {% with mensagens =  get_flashed_messages() %}      
         {% for msg in mensagens %}
-          {{msg}}
-        {% endfor %}
-      </div>
+          {%if msg[0] == 1%}
+          <div class="alert alertShow" id="alert" style="background-color: rgb(30, 150, 0);">
+          <p>{{msg[1]}}</p>
+          </div>
+          {%else %}
+          <div class="alert alertShow" id="alert" style="background-color: rgb(148, 0, 0);">
+            <p>{{msg[1]}}</p>
+          </div>
+          {%endif%}
+        {% endfor %}   
     {% endwith %}
   </div>
 </div>
-
 </body>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+            const quadrado = document.getElementById('alert');
+
+            // Função para mostrar a div
+            function showDiv() {
+                quadrado.classList.add('alertShow');
+                quadrado.classList.remove('alertHide');
+            }
+
+            // Função para esconder a div
+            function hideDiv() {
+                quadrado.classList.add('alertHide');
+                quadrado.classList.remove('alertShow');
+            }
+
+            // Aguarda 3 segundos e mostra a div
+            setTimeout(showDiv, 3000);
+
+            // Aguarda mais 3 segundos (total de 6 segundos) e esconde a div
+            setTimeout(hideDiv, 6000);
+        });  
+</script>
 </html>
