@@ -51,7 +51,21 @@
         </form>
       </div>
     </section>
-
+    <div class="container-sm">
+      {% with mensagens =  get_flashed_messages() %}      
+        {% for msg in mensagens %}
+          {%if msg[0] == 1%}
+          <div class="alert alert-success fs-3 text-center" role="alert">
+            {{msg[1]}}
+          </div>
+          {%else%}
+          <div class="alert alert-info fs-3 text-center" role="alert">
+            {{msg[1]}}
+          </div>
+          {%endif%}
+        {% endfor %}
+      {% endwith %}
+    </div>
     <section class="container">
       <div class="row">
         <!-- Exemplo de card de vaga -->

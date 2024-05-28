@@ -27,7 +27,20 @@
       font-weight: bold;
       margin: 0px;
     }
-    #form_dev{  
+    .candidato-area{
+      background-color: rgba(224, 220, 220, 0.5);
+      border-radius: 5px;
+      padding: 20px;
+    }
+    .candidato-area hr{      
+      background-color: black;
+      padding: 1px;
+      max-width: 400px;
+      opacity: 100%;
+    }
+    .candidato-area h2{
+      color: white;
+      text-shadow: -3px 2px 4px black;
     }
   </style>
 </head>
@@ -38,14 +51,16 @@
 
         {%endblock%}
         </nav>
-      </header>
+    </header>
+    
+    <div style="margin-bottom: 100px;">
     {%block conteudo%}
     {%endblock%}
-  <!-- Rodapé do Site -->
-  <footer class="footer mt-auto py-3 bg-light">
-    <div class="container text-center">
-      <span class="text-muted">© 2024 Busca Dev. Todos os direitos reservados.</span>
     </div>
+
+  <!-- Rodapé do Site -->
+  <footer class=" text-center py-3 bg-dark-subtle mt-auto">    
+      <span class="text-muted">© 2024 Busca Dev. Todos os direitos reservados.</span>
   </footer>
 
   <!-- Scripts -->

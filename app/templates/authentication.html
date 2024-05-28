@@ -130,7 +130,7 @@
   <div>
     {% with mensagens =  get_flashed_messages() %}      
         {% for msg in mensagens %}
-          {%if msg[0] == 1%}
+          {%if msg[0] == 3%}
           <div class="alert alertShow" id="alert" style="background-color: rgb(30, 150, 0);">
           <p>{{msg[1]}}</p>
           </div>
@@ -139,7 +139,7 @@
             <p>{{msg[1]}}</p>
           </div>
           {%endif%}
-        {% endfor %}   
+        {% endfor %}
     {% endwith %}
   </div>
 </div>

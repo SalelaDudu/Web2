@@ -22,16 +22,18 @@
 {%block conteudo%}
 <div class="container">
     <div class="row" style="margin-top: 50px;">
-        <div class="col-md-12">
-            <h1> {{vaga_[0]}}</h1>
-            <p>{{vaga_[1]}}</p>
-        </div>
+      <div class="col-md-12">
+          <h1 class="text-center"> {{vaga_[0]}}</h1>
+          <textarea disabled rows="8" style="width: 100%;">{{vaga_[1]}}</textarea>
+      </div>
+      <hr class="border border-primary border-3 opacity-75">
     </div>
     <h3> CANDIDATOS:</h3>
     {%for i in candidatos%}
         <div style="margin-top: 20px;" class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 candidato-area">
                 <h2>{{i[0]}}</h2>
+                <hr>
                 <p>{{i[1]}}</p>
             </div>
         </div>        

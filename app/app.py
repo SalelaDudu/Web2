@@ -73,14 +73,14 @@ def registro():
     res = be.registro(username,senha,re_senha,user_mode)
 
     if(res == 1):
-        flash('Nome de usuário já cadastrado')
+        flash([1,'Nome de usuário já cadastrado'])
         return redirect('/authentication#register')
     else:
         if(res == 2):
-            flash('As senhas não batem!')
+            flash([2,'As senhas não batem!'])
             return redirect('/authentication#register')
         elif res == 3:            
-            flash('Sucesso!')
+            flash([3,'Sucesso!'])
             return redirect('/authentication#logIn')
 @app.route('/dashboard')
 def dashboard():
@@ -146,9 +146,11 @@ def candidatar(idvaga):
         try:
             res = be.consulta(f'select * from candidatos where dev ="{user}" and vaga="{vaga}"')        
             if(len(res) > 0):
-                return redirect('/dashboard')
+                flash([0,"Já se candidatou a essa vaga!"])
+                return redirect('/')
             else:
                 if be.candidatar(user,vaga) == 'ok':
+                    flash([1,'Candidatado com sucesso!'])
                     return redirect('/')
         except NameError:
             return NameError
