@@ -32,8 +32,10 @@
         </div>
         <br>
         <div class="form-group">
-            <label for="data_de_nascimento">Data de nascimento:</label><br>
-            <input id="data_de_nascimento" name="nascimento" type="date" value="{{_info['nascimento']}}">
+          <label for="email">Email:</label>
+          <input  name='email'type="email" class="form-control" id="email" placeholder="jason.dev@mymail.com" value="{{_info['mail']}}">
+          <label for="telefone">Telefone</label>
+          <input  name='telefone'type="text" class="form-control" id="telefone" placeholder="(00) 99999999" value="{{_info['tel']}}">          
         </div>
         <br>
         <div class="form-group">
@@ -44,41 +46,43 @@
         <button class="btn btn-primary btn-md" type="submit">Salvar</button>
       </form>
 </div>
-{%else%}
-<div class="recruiter container" style="margin-top: 100px;">
-  <form id="form_recruiter" method="POST" action="/saveRecruiterInfo">
-      <div class="form-group">
-        <label for="Nome da Empresa">Nome da Empresa:</label>
-        <input  name='nome_empresa'type="text" class="form-control" id="Nome_daEmpresa" placeholder="Mega Tech" value="{{_info['nome']}}">
-      </div>
-      <br>
-      <div class="form-group">
-        <label for="descricao">Descreva um pouco de sua empresa:</label>
-        <textarea class="form-control" id="descricao" name="descricao_empresa" rows="3" placeholder="Maior empresa de tecnologia de Santa Catarina">{{_info['descricao']}}</textarea>
-      </div>
-      <br>
-      <button class="btn btn-primary btn-md" type="submit">Salvar</button>
-    </form>
-</div>
+  {%else%}
+  <div class="recruiter container" style="margin-top: 100px;">
+    <form id="form_recruiter" method="POST" action="/saveRecruiterInfo">
+        <div class="form-group">
+          <label for="Nome da Empresa">Nome da Empresa:</label>
+          <input  name='nome_empresa'type="text" class="form-control" id="Nome_daEmpresa" placeholder="Mega Tech" value="{{_info['nome']}}">
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="descricao">Descreva um pouco de sua empresa:</label>
+          <textarea class="form-control" id="descricao" name="descricao_empresa" rows="3" placeholder="Maior empresa de tecnologia de Santa Catarina">{{_info['descricao']}}</textarea>
+        </div>
+        <br>
+        <button class="btn btn-primary btn-md" type="submit">Salvar</button>
+      </form>
+  </div>
 
-<div class='container' style="margin-top: 100px;">
-  <form id="postarVaga" method="POST" action="/postarVaga">
-    <div class="form-group">
-      <label for="nome_vaga">Título da Vaga:</label>
-      <input  name='nome_empresa'type="text" class="form-control" id="Nome_daVaga" placeholder="Desevolvedor php" value="">
-    </div>
-    <br>
-    <div class="form-group">
-      <label for="descricao_vaga">Descrição da vaga:</label>
-      <textarea class="form-control" id="descricao_vaga" name="descricao_vaga" rows="5" placeholder="* 2 anos de experiências
+  <div class='container' style="margin-top: 50px;">
+    <form id="postarVaga" method="POST" action="/postarVaga">
+      <div class="form-group">
+        <label for="nome_vaga">Título da Vaga:</label>
+        <input  name='nome_empresa'type="text" class="form-control" id="Nome_daVaga" placeholder="Desevolvedor php" value="">
+      </div>
+
+      <br>
+
+      <div class="form-group">
+        <label for="descricao_vaga">Descrição da vaga:</label>
+        <textarea class="form-control" id="descricao_vaga" name="descricao_vaga" rows="5" placeholder="* 2 anos de experiências
 * Conhecimento sólido em laravel
 * Metodologia exTreme Go Horse"></textarea>
-    </div>
-    <br>
-    <button class="btn btn-primary btn-md" type="submit">Postar</button>
-  </form>
-</div>
+      </div>
+      <br>
+      <button class="btn btn-primary btn-md" type="submit">Postar</button>    
+    </form>
+  </div>
 
-{%endif%}
+  {%endif%}
 
 {% endblock%}

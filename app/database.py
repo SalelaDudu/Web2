@@ -27,10 +27,10 @@ def registerUser(login,user_mode):
     db.commit()
     cursor.close()
     
-def registerDevData(login,name,birth,desc):
+def registerDevData(login,name,telefone,email,desc):
     db = get_db()
     cursor = db.cursor()
-    cursor.execute(f"update user_data set name='{name}',born='{birth}',description='{desc}' where login_username = '{login}'")
+    cursor.execute(f"update user_data set name='{name}',contact1='{telefone}',contact2='{email}',description='{desc}' where login_username = '{login}'")
     db.commit()
     cursor.close()
 

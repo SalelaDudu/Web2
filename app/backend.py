@@ -23,27 +23,36 @@ def registro(username,senha,re_senha,user_mode):
             db.registerLogin(username,pw_hash)
             db.registerUser(username,user_mode)
             return 3
-def saveDevInfo(login,nome,nascimento,descricao):
+def saveDevInfo(login,nome,telefone,email,descricao):
     try:    
-        db.registerDevData(login,nome,nascimento,descricao)
+        db.registerDevData(login,nome,telefone,email,descricao)
     
     except NameError:
         return print(NameError)
 def getDevInfo(login):
     try:
+        
         devInfo = db.getDevInfo(login)
+        print(devInfo)
 
         if devInfo[0][2] == None:
             nome = ''
         else:
             nome = devInfo[0][2]
         
-        if devInfo[0][5] == None:
+        if devInfo[0][4] == None:
             desc = ''
         else:
-            desc = devInfo[0][5]
-        
-        info = {'nome':nome,'nascimento':devInfo[0][3],'descricao': desc}
+            desc = devInfo[0][4]
+        if devInfo[0][5] == None:
+            tel = ''
+        else:
+            tel = devInfo[0][5]
+        if devInfo[0][6] == None:
+            mail = ''
+        else:
+            mail = devInfo[0][6]
+        info = {'nome':nome,'descricao': desc,'tel':tel,'mail':mail}
                 
         return info
     except NameError:
@@ -94,4 +103,4 @@ def candidatar(user,vaga):
 def consulta(query):
     return db.consulta(query)
 def verCandidatos(idvaga):
-    return db.consulta(f''' SELECT user_data.name, user_data.description FROM user_data JOIN candidatos ON user_data.login_username = candidatos.dev where candidatos.vaga = "{idvaga}"; ''')
+    return db.consulta(f''' SELECT user_data.name, user_data.description,user_data.contact1,user_data.contact2 FROM user_data JOIN candidatos ON user_data.login_username = candidatos.dev where candidatos.vaga = "{idvaga}"; ''')

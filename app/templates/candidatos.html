@@ -32,9 +32,19 @@
     {%for i in candidatos%}
         <div style="margin-top: 20px;" class="row">
             <div class="col-md-12 candidato-area">
-                <h2>{{i[0]}}</h2>
-                <hr>
-                <p>{{i[1]}}</p>
+              <div class="row">
+                <div class="col-md-10">
+                  <h2>{{i[0]}}</h2>                  
+                  <hr>
+                  <p>{{i[1]}}</p>
+                </div>
+                <div class="col-md-2 contato">
+                  <h2 class="contato-text">Contato:</h2>
+                  <hr class="">
+                  <h4 class="contato-text"> tel:<div class="value">{{i[2]}}</div></h4>
+                  <h4 class="contato-text"> email:<div class="value">{{i[3]}}</div></h4>
+                </div>
+              </div>
             </div>
         </div>        
     {%endfor%}

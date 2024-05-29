@@ -19,30 +19,7 @@ def loginScreen():
 @app.route('/LogOut')
 def LogOut():
     session.clear()
-    return'''
-
-        <h1>Até logo! Você será redirecionado em <span id="countdown">3</span> segundos...</h1>
-        <script>
-            function startCountdown(duration, display) {
-                var timer = duration, seconds;
-                var countdownInterval = setInterval(function() {
-                    seconds = parseInt(timer, 10);
-                    display.textContent = seconds;
-
-                    if (--timer < 0) {
-                        clearInterval(countdownInterval);
-                        window.location.href = "/";
-                    }
-                }, 1000);
-            }
-
-            window.onload = function() {
-                var threeSeconds = 3;
-                var display = document.querySelector('#countdown');
-                startCountdown(threeSeconds, display);
-            };            
-        </script>             
-    '''
+    return redirect('/')
 @app.route("/logar", methods=['POST'])
 def logar():
     username = request.form['login_input']
@@ -55,7 +32,6 @@ def logar():
         return redirect("/authentication#register")
     else:
         if res[0] == 2:
-            flash([1,"LOGADO!"])
             session['login'] = username
             session['user_mode'] = res[1]
             session.permanent = True
@@ -100,10 +76,11 @@ def dashboard():
 def devInfo():
     login = session['login']
     nomeUsuario = request.form['nome_dev']
-    nascimento = request.form['nascimento']
+    telefone = request.form['telefone']
+    email = request.form['email']
     descricao = request.form['descricao_dev']
     try:
-        be.saveDevInfo(login,nomeUsuario,nascimento,descricao)
+        be.saveDevInfo(login,nomeUsuario,telefone,email,descricao)
         return redirect('/dashboard')
     except NameError:
         return(NameError)
@@ -123,7 +100,7 @@ def PostarVaga():
     
     try:
         be.postarVaga(session['login'],nome,descricao)
-        flash("Sucesso")
+        flash([1,"Postado!"])
         return redirect('/')        
         
     except NameError:
@@ -158,5 +135,5 @@ def candidatar(idvaga):
 def verCandidatos(idvaga):
     res = be.verCandidatos(idvaga)
     vaga = be.consulta(f'select title,description from cards where id = "{idvaga}"')
-    
+    print(res)
     return render_template('/Candidatos.html',_session=session['login'], candidatos=res,vaga_=vaga[0])
