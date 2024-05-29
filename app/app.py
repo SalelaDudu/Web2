@@ -136,4 +136,4 @@ def verCandidatos(idvaga):
     res = be.verCandidatos(idvaga)
     vaga = be.consulta(f'select title,description from cards where id = "{idvaga}"')
     print(res)
-    return render_template('/Candidatos.html',_session=session['login'], candidatos=res,vaga_=vaga[0])
+    return render_template('/candidatos.html',_session=session['login'], candidatos=res,vaga_=vaga[0])
