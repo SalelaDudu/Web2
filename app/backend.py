@@ -71,10 +71,10 @@ def getRecruiterInfo(login):
         else:
             nome = recruiterInfo[0][2]
         
-        if recruiterInfo[0][5] == None:
+        if recruiterInfo[0][4] == None:
             desc = ''
         else:
-            desc = recruiterInfo[0][5]
+            desc = recruiterInfo[0][4]
         
         info = {'nome':nome,'descricao': desc}
         return info
