@@ -33,7 +33,6 @@ def getDevInfo(login):
     try:
         
         devInfo = db.getDevInfo(login)
-        print(devInfo)
 
         if devInfo[0][2] == None:
             nome = ''

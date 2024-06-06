@@ -44,7 +44,7 @@
         <h1 class="display-4 fw-bold">Encontre seu próximo emprego de desenvolvedor</h1>
         <p class="lead">Explore milhares de vagas de emprego para desenvolvedores de software em todo o mundo.</p>
         <form>
-          <div class="input-group input-group-lg">
+          <div class="input-group input-group-lg" id="searchbox">
             <input type="text" class="form-control" placeholder="Buscar vagas">
             <button class="btn btn-primary" type="button">Buscar</button>
           </div>
@@ -74,7 +74,7 @@
             <div class="card h-100">
               <div class="card-body">
                 <h5 class="card-title">{{i[2]}}</h5>
-                <h6 class="text-end fs-5 fw-bold" style="color: red;">{{i[1]}}</h2>
+                <h6 class="text-end fs-5 fw-bold" style="color: #007fff;">{{i[1]}}</h2>
                 <p class="card-text">{{i[3]}}</p>
                 {%if session_ and session_['user_mode'] != 'Dev'%}
                   <a href="/minhasVagas" class="btn btn-primary">Ver Inscritos</a>

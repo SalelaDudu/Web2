@@ -23,6 +23,15 @@
 {% endblock %}
 
 {% block conteudo %}
+<div class="container-sm" style="margin-top: 100px;">
+  {% with mensagens =  get_flashed_messages() %}      
+          {% for msg in mensagens %}
+            <div id="alert" class="alert alert-success fs-3 text-center" role="alert">
+              {{msg}}
+            </div>
+          {% endfor %}
+  {% endwith %}
+</div>
 {%if _session['user_mode'] == 'Dev'%}
 <div class="dev container" style="margin-top: 100px;">
     <form id="form_dev" method="POST" action="/saveDevInfo">

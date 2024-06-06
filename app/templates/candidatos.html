@@ -20,33 +20,35 @@
   </div>
 {% endblock %}
 {%block conteudo%}
-<div class="container">
-    <div class="row" style="margin-top: 50px;">
-      <div class="col-md-12">
-          <h1 class="text-center"> {{vaga_[0]}}</h1>
-          <textarea disabled rows="8" style="width: 100%;">{{vaga_[1]}}</textarea>
+  <main>
+      <div class="container" style="margin-bottom: 100px;">
+        <div class="row" style="margin-top: 50px;">
+          <div class="col-md-12">
+              <h1 class="text-center"> {{vaga_[0]}}</h1>
+              <textarea disabled rows="8" style="width: 100%;">{{vaga_[1]}}</textarea>
+          </div>
+        </div>
+        
+        <h3 style="margin-top: 50px;"> CANDIDATOS:</h3>
+        {%for i in candidatos%}
+            <div style="margin-top: 20px;" class="row">
+                <div class="col-md-12 candidato-area">
+                  <div class="row">
+                    <div class="col-md-10">
+                      <h2>{{i[0]}}</h2>                  
+                      <hr>
+                      <p>{{i[1]}}</p>
+                    </div>
+                    <div class="col-md-2 contato">
+                      <h2 class="contato-text">Contato:</h2>
+                      <hr class="">
+                      <h4 class="contato-text"> tel:<div class="value">{{i[2]}}</div></h4>
+                      <h4 class="contato-text"> email:<div class="value">{{i[3]}}</div></h4>
+                    </div>
+                  </div>
+                </div>
+            </div>        
+        {%endfor%}
       </div>
-      <hr class="border border-primary border-3 opacity-75">
-    </div>
-    <h3> CANDIDATOS:</h3>
-    {%for i in candidatos%}
-        <div style="margin-top: 20px;" class="row">
-            <div class="col-md-12 candidato-area">
-              <div class="row">
-                <div class="col-md-10">
-                  <h2>{{i[0]}}</h2>                  
-                  <hr>
-                  <p>{{i[1]}}</p>
-                </div>
-                <div class="col-md-2 contato">
-                  <h2 class="contato-text">Contato:</h2>
-                  <hr class="">
-                  <h4 class="contato-text"> tel:<div class="value">{{i[2]}}</div></h4>
-                  <h4 class="contato-text"> email:<div class="value">{{i[3]}}</div></h4>
-                </div>
-              </div>
-            </div>
-        </div>        
-    {%endfor%}
-</div>
+  </main>
 {%endblock%}

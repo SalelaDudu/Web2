@@ -81,6 +81,7 @@ def devInfo():
     descricao = request.form['descricao_dev']
     try:
         be.saveDevInfo(login,nomeUsuario,telefone,email,descricao)
+        flash('Salvo!')
         return redirect('/dashboard')
     except NameError:
         return(NameError)
@@ -90,6 +91,7 @@ def recruiterInfo():
     descricao_empresa = request.form['descricao_empresa']
     try:
         be.saveRecruiterInfo(session['login'],nome_empresa,descricao_empresa)
+        flash('Salvo!')
         return redirect('/dashboard')
     except NameError:
         return NameError
@@ -100,8 +102,8 @@ def PostarVaga():
     
     try:
         be.postarVaga(session['login'],nome,descricao)
-        flash([1,"Postado!"])
-        return redirect('/')        
+        flash("Postado!")
+        return redirect('/dashboard')        
         
     except NameError:
         return NameError
@@ -135,5 +137,4 @@ def candidatar(idvaga):
 def verCandidatos(idvaga):
     res = be.verCandidatos(idvaga)
     vaga = be.consulta(f'select title,description from cards where id = "{idvaga}"')
-    print(res)
     return render_template('/candidatos.html',_session=session['login'], candidatos=res,vaga_=vaga[0])

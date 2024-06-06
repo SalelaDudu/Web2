@@ -25,7 +25,7 @@
       width:35px;
     }
     .user_section > p{
-      color: white;
+      color: rgb(0, 0, 0);
       font-weight: bold;
       margin: 0px;
     }
@@ -35,21 +35,20 @@
       padding: 20px;
     }
     .candidato-area hr{      
-      background-color: black;
-      padding: 1px;
+      background-color: #c4c4c4;
+      border: none;
+      padding: 2px;
       max-width: 400px;
       opacity: 100%;
     }
     .candidato-area h2{
-      color: white;
-      text-shadow: -3px 2px 4px black;
+      color: black;      
     }
     .contato hr{
       max-width:150px;
     }
     .contato-text{
-      color: white;
-      text-shadow: -3px 2px 4px black;
+      color: black;
       font-size: 24px;
     }
     .contato-text .value{
@@ -57,10 +56,23 @@
       color:black;
       text-shadow: none;
     }
+    .card{
+      box-shadow: -7px 14px 5px rgba(0, 0, 0, 0.5);
+      background-color: #ced4da;
+    }
+    #searchbox {
+      box-shadow: -5px 7px 5px rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+    }
+
     footer{
-      position: absolute;
-      bottom:0%;
+      position: fixed;
+      left: 0;
+      bottom: 0;
       width: 100%;
+      background-color: red;
+      color: white;
+      text-align: center;      
     }
   </style>
 </head>
@@ -73,10 +85,9 @@
         </nav>
     </header>
     
-    <div style="">
-    {%block conteudo%}
-    {%endblock%}
-    </div>
+      {%block conteudo%}
+      {%endblock%}
+
 
   <!-- Rodapé do Site -->
   <footer class=" text-center py-3 bg-dark-subtle">    
@@ -93,7 +104,7 @@
                 alerta.style.display = 'none';
             }
 
-            setTimeout(hideDiv, 3000);
+            setTimeout(hideDiv, 2500);
         });  
   </script>
 </body>

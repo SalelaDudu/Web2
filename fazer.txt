@@ -1,0 +1,13 @@
+Card com sombra e cor destaque
+
+Notificação quando salvar info
+
+Notificação quando postar Card
+
+footer candidatos
+
+cor do nome
+
+barra  de busca com sombra
+
+tirar sombra do nome do candidato
